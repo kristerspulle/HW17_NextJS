@@ -1,11 +1,33 @@
 .blog{
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
-  padding: 15px;
+  border-radius: 10px;
+  padding: 20px 30px;
   align-items: center;
+  gap: 10px;
+  background-color: rgb(228, 228, 228);
 }
 
+.title{
+  font-size: 40px;
+  color: rgb(0, 0, 117);
+  font-weight: bold;
+}
+.oneBlog{
+  text-decoration: none;
+}
+.wrapper{
+  display: flex;
+  gap: 20px;
+}
+
+.image{
+
+}
+
+.paragraph{
+  color: rgb(0, 0, 117)
+}
 .commentWrapper{
   display: flex;
   flex-direction: column;

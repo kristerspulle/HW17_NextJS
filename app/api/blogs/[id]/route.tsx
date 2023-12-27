@@ -1,6 +1,5 @@
 import { script } from '@/script';
 import Blog from '@/models/blog';
-
 import { NextRequest, NextResponse } from 'next/server';
 
 export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
