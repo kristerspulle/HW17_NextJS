@@ -1,0 +1,23 @@
+.blog{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  padding: 15px;
+  align-items: center;
+}
+
+.commentWrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.comment{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.seperator{
+  border: 2px solid black;
+  width: 100%;
+}
+
