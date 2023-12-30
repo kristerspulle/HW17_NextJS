@@ -1,0 +1,21 @@
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label{
+  color: rgb(0, 0, 117);
+}
+
+.textarea{
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px 15px;
+  border: none;
+  resize: vertical;
+}
+
+.input:placeholder{
+  color: rgb(0, 0, 117);
+}

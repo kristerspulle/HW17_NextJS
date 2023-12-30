@@ -8,16 +8,17 @@ type BlogProps = {
   title: string,
   image: string,
   paragraph: string,
-  isList?: boolean,
+  isList: boolean,
   comments?: {
     id: string
     name: String,
-    comment: String
-  }[]
+    comment: String,
+    createdAt: Date
+  }[],
+  tag: string
 }
 
-export const Blog = ({id, title, image, paragraph, isList = true, comments}: BlogProps): JSX.Element => {
-
+export const Blog = ({id, title, image, paragraph, isList = true, comments, tag}: BlogProps): JSX.Element => {
   return (
     isList ? (
       <div className={styles.blog}>
@@ -26,13 +27,15 @@ export const Blog = ({id, title, image, paragraph, isList = true, comments}: Blo
           <Image className={styles.image} width={600} height={300} src={image} alt={title}/>
           <div className={styles.paragraph}>{paragraph}</div>
         </div>
+        <div>{tag}</div>
       </div>
     ) : (
+      
       <div className={styles.blog}>
         <Link href={`/blog/${id}`} className={`${styles.title} + ${styles.oneBlog}`}>{title}</Link>
         <Image className={styles.image} width={600} height={300} src={image} alt={title}/>
         <div className={styles.paragraph}>{paragraph}</div>
-        <div>Tags</div>
+        <div>{tag}</div>
         <div className={styles.seperator}></div>
         <CommentForm/>
         <div className={styles.commentWrapper}>
@@ -41,6 +44,7 @@ export const Blog = ({id, title, image, paragraph, isList = true, comments}: Blo
               <div className={styles.comment} key={comment.id}>
                 <div className={styles.commentAuthor}>{comment.name}</div>
                 <div className={styles.commentText}>{comment.comment}</div>
+                <div>{(comment.createdAt).toString()}</div>
               </div>
             )
           })}

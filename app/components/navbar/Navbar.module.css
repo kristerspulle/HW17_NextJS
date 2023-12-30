@@ -3,6 +3,7 @@
   justify-content: center;
   padding: 20px 0;
   background-color: rgb(0, 0, 117);
+  gap: 10px;
 }
 
 .link{

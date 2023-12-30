@@ -1,4 +1,5 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
 const blogSchema = new Schema({
   title: String,
@@ -6,9 +7,9 @@ const blogSchema = new Schema({
   paragraph: String,
   tag: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Tags'
-  }
-})
+    ref: 'Tag',
+  },
+});
 
 const Blog = mongoose.models.Blog || mongoose.model('Blog', blogSchema);
 
