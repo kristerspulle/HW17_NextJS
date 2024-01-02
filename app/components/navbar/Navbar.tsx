@@ -18,6 +18,7 @@ export const Navbar = async () => {
         New Blog
       </Link>
       <SignOutButton type='button' text='Sign out'/>
+      <p>Hello, {session.user?.username}</p>
     </nav>
     ) : (
     <nav className={styles.nav}>

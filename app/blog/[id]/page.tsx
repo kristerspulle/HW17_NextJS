@@ -1,4 +1,5 @@
 import { Blog } from '../../components/BlogCard/BlogCard';
+import styles from './page.module.css'
 
 type Blog = {
   _id: string,
@@ -33,7 +34,7 @@ const SingleBlog =  async ({params}: {params: { id: string} }) => {
 
   
   return (
-    <main>
+    <main className={styles.main}>
       <Blog
         id={dataBlog._id}
         title={dataBlog.title}
@@ -47,3 +48,4 @@ const SingleBlog =  async ({params}: {params: { id: string} }) => {
   )
 }
 export default SingleBlog;
+

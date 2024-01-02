@@ -27,14 +27,13 @@ const getData = async () => {
 const ProtectedPage = async () => {
   const session = await getServerSession(authOptions);
   const data = await getData();
-  console.log(session);
+
   if (!session) {
     redirect('api/auth/signin?callbackUrl=/protected');
   }
 
   return (
     <>
-      <p>hi, {session.user?.username ?? 'friend'}</p>
       <div className="main">
         {data.map((blog: Blog) => {
           return (

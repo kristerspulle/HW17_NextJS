@@ -5,6 +5,7 @@ import { Input } from '../Input/Input';
 import { TextArea } from '../TextArea/TextArea';
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 const initFormValue = {
   name: '',
@@ -13,6 +14,7 @@ const initFormValue = {
 export const CommentForm = () => {
   const [formValue, setFormValue] = useState(initFormValue);
   const params = useParams<{ id: string }>();
+  const router = useRouter()
 
   const postComment = async (id: string) => {
     const comment = await fetch(
@@ -36,6 +38,7 @@ export const CommentForm = () => {
         e.preventDefault();
         postComment(params.id);
         setFormValue(initFormValue);
+        router.refresh();
       }}
     >
       <Input
