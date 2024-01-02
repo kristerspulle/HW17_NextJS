@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Quicksand } from 'next/font/google';
-import { Navbar } from '@components/navbar/Navbar';
+import { Navbar } from '@/app/components/Navbar/Navbar';
 import { Provider } from '@components/Provider';
 import './globals.css';
 

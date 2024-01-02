@@ -1,0 +1,25 @@
+.commentWrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.comment{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.commentAuthor{
+  color: rgb(0, 0, 117);
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.commentText{
+
+}
+
+.commentDate{
+  font-size: 10px;
+}

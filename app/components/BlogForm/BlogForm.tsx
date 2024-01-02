@@ -14,6 +14,7 @@ const BlogForm = () => {
       <Input type='text' placeholder='Blog title' required={false} name='blogTitle' value={blogForm.title}/>
       <Input type='text' placeholder='Blog image URL' required={false} name='blogImage' value={blogForm.image}/>
       <TextEditor />
+      <select></select>
       <Button type='submit' text='Add blog'/>
     </form>
   )

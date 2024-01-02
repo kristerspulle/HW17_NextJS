@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { CommentForm } from '../CommentForm/CommentForm';
 import { authOptions } from '@api/auth/[...nextauth]/route';
 import { getServerSession } from 'next-auth';
-import { formatDistanceToNow } from 'date-fns';
+import Comments from '@components/Comment/Comment';
 
 type BlogProps = {
   id: string;
@@ -14,22 +14,14 @@ type BlogProps = {
   isList: boolean;
   comments?: {
     id: string;
-    name: String;
-    comment: String;
+    name: string;
+    comment: string;
     createdAt: Date;
   }[];
   tag: string;
 };
 
-export const Blog = async ({
-  id,
-  title,
-  image,
-  paragraph,
-  isList = true,
-  comments,
-  tag,
-}: BlogProps) => {
+export const Blog = async ({id, title, image, paragraph,  isList = true, comments, tag}: BlogProps) => {
   const session = await getServerSession(authOptions);
   return isList ? (
     <div className={styles.blog}>
@@ -73,13 +65,7 @@ export const Blog = async ({
       <div className={styles.commentWrapper}>
         {comments?.map((comment) => {
           return (
-            <div className={styles.comment} key={comment.id}>
-              <div className={styles.commentAuthor}>{comment.name}</div>
-              <div className={styles.commentText}>{comment.comment}</div>
-              <div className={styles.commentDate}>
-                {formatDistanceToNow(comment.createdAt, { addSuffix: true })}
-              </div>
-            </div>
+            <Comments key={comment.id} _id={comment.id} name={comment.name} comment={comment.comment} createdAt={comment.createdAt}/>
           );
         })}
       </div>

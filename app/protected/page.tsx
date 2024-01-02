@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import { authOptions } from '@api/auth/[...nextauth]/route';
 import { getServerSession } from 'next-auth';
-import { Blog } from '../components/BlogCard/BlogCard';
+import ServerBlogs from './serverBlogs'
 
 type Blog = {
   _id: string;
@@ -33,23 +33,9 @@ const ProtectedPage = async () => {
   }
 
   return (
-    <>
-      <div className="main">
-        {data.map((blog: Blog) => {
-          return (
-            <Blog
-              key={blog._id}
-              id={blog._id}
-              title={blog.title}
-              image={blog.image}
-              paragraph={blog.paragraph}
-              isList={true}
-              tag={blog.tag.tag}
-            />
-          );
-        })}
-      </div>
-    </>
+    <main>
+      <ServerBlogs blogs={data}/>
+    </main>
   );
 };
 

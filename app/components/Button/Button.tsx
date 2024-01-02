@@ -9,16 +9,7 @@ type ButtonProps = {
   onClick?: () => void
 }
 
-// const deleteComment = async () => {
-//   const res = await fetch(`http://localhost:3000/api/blogs/comments`, {
-//     method: 'DELETE',
-//     cache: 'no-store'
-//   })
-//   if(!res.ok) {
-//     throw new Error(`Failed to fetch data. Status: ${res.status}`)
-//   }
-//   return res.json()
-// }
+
 
 
 export const Button = ({type = 'button', text, onClick}: ButtonProps): JSX.Element => {
