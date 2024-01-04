@@ -62,7 +62,7 @@ export const CommentForm = () => {
         }}
         required
       />
-      <Button type="submit" text="Add comment" />
+      <Button type="submit" text="Add comment" id='addComment'/>
     </form>
   );
 };

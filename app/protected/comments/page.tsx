@@ -1,6 +1,6 @@
 import ServerComments from './ServerComments'
 
-const getCommentData = async () => {
+export const getCommentData = async () => {
   const res = await fetch(`http://localhost:3000/api/blogs/comments`, {
     cache: 'no-store',
   });

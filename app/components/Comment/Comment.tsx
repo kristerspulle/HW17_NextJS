@@ -19,9 +19,9 @@ const Comment = async ({_id, name, comment, createdAt, blog,}: CommentProps) => 
   return  (
     <div className={styles.comment} key={_id}>
       <div className={styles.commentAuthor}>{name}</div>
-      <div className={styles.commentText}>{comment}</div>
+      <div>{comment}</div>
       <div className={styles.wrapper}>
-        <div>{formatDistanceToNow(createdAt, { addSuffix: true })}</div>
+        <div className={styles.createdAt}>{formatDistanceToNow(createdAt, {addSuffix: true})}</div>
         <div>{blog?.title}</div>
       </div>
     </div>

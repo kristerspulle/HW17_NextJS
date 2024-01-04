@@ -2,9 +2,8 @@ import Image from 'next/image';
 import styles from './BlogCard.module.css';
 import Link from 'next/link';
 import { CommentForm } from '../CommentForm/CommentForm';
-import { authOptions } from '@api/auth/[...nextauth]/route';
-import { getServerSession } from 'next-auth';
 import Comments from '@components/Comment/Comment';
+import parse from 'html-react-parser';
 
 type BlogProps = {
   id: string;
@@ -22,43 +21,50 @@ type BlogProps = {
 };
 
 export const Blog = async ({id, title, image, paragraph,  isList = true, comments, tag}: BlogProps) => {
-  const session = await getServerSession(authOptions);
   return isList ? (
     <div className={styles.blog}>
-      <Link
-        href={session ? `/protected/${id}` : `/blog/${id}`}
-        className={styles.title}
-      >
-        {title}
-      </Link>
-      <div className={styles.wrapper}>
-        <Image
-          className={styles.image}
-          width={600}
-          height={300}
-          src={image}
-          alt={title}
-        />
-        <div className={styles.paragraph}>{paragraph}</div>
+      <div>
+        <Link
+          href={`/blog/${id}`}
+          className={styles.title}
+        >
+          {title}
+        </Link>
       </div>
-      <div className={styles.tag}>{tag}</div>
+      <div className={styles.wrapper}>
+        <div className={styles.imageWrapper}>
+          <Image
+            priority={true}
+            className={styles.image}
+            width={600}
+            height={300}
+            src={image}
+            alt={title}
+          />
+        </div>
+        <div className={styles.textWrapper}>
+          <div className={styles.paragraph}>{(parse(paragraph.slice(0, 800)))}...</div>
+          <div className={styles.tag}>{tag}</div>
+        </div>
+      </div>
     </div>
   ) : (
     <div className={styles.blog}>
       <Link
-        href={session ? `/protected/${id}` : `/blog/${id}`}
+        href={`/blog/${id}`}
         className={`${styles.title} + ${styles.oneBlog}`}
       >
-        {title}
+        {title}({comments ? comments.length : 0})
       </Link>
       <Image
+        priority={true}
         className={styles.image}
         width={600}
         height={300}
         src={image}
         alt={title}
       />
-      <div className={styles.paragraph}>{paragraph}</div>
+      <div className={styles.paragraph}>{parse(paragraph)}</div>
       <div className={styles.tag}>{tag}</div>
       <div className={styles.seperator}></div>
       <CommentForm />

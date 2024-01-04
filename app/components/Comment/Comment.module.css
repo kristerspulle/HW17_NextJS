@@ -8,6 +8,8 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-items: center;
+  justify-items: center;
 }
 
 .commentAuthor{
@@ -16,10 +18,15 @@
   font-size: 25px;
 }
 
-.commentText{
-
-}
-
 .commentDate{
   font-size: 10px;
+}
+
+.wrapper{
+  display: flex;
+  gap: 10px;
+}
+
+.createdAt{
+  font-size: 12px;
 }

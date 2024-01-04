@@ -2,11 +2,14 @@
 
 import { signOut } from 'next-auth/react'
 import styles from './Button.module.css'
+import { useRouter } from 'next/navigation';
+
 
 type ButtonProps = {
   type: HTMLButtonElement['type'],
   text: string,
-  onClick?: () => void
+  onClick?: () => void,
+  id: string
 }
 
 
@@ -30,13 +33,62 @@ export const SignOutButton = ({type}: ButtonProps) => {
   );
 };
 
-export const DeleteButton = ({type, onClick}: ButtonProps) => {
+export const DeleteCommentButton = ({type, onClick, text, id}: ButtonProps) => {
+  const router = useRouter();
+  const deleteComment = async (id: string) => {
+    const res = await fetch(`http://localhost:3000/api/blogs/comments/${id}`, {
+      method: 'DELETE',
+      cache: 'no-store',
+    });
+  
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data. Status: ${res.status}`);
+    }
+    return res.json();
+  };
+
   return (
     <div className={styles.wrapper}>
-      <button className={styles.buttonDelete} type={type} onClick={onClick}>
-        Delete comment
+      <button className={styles.buttonDelete} type={type} onClick={() => {
+        deleteComment(id)
+        router.refresh();
+      }}>
+        {text}
       </button>
     </div>
   );
 };
 
+export const DeleteBlogButton = ({type, text, id}: ButtonProps) => {
+
+  const deleteBlog = async (id: string) => {
+    const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {
+      method: 'DELETE',
+      cache: 'no-store',
+    });
+  
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data. Status: ${res.status}`);
+    }
+    return res.json();
+  };
+
+  return (
+    <div className={styles.wrapper}>
+      <button className={styles.buttonDelete} type={type} onClick={() => deleteBlog(id)}>
+        {text}
+      </button>
+    </div>
+  );
+};
+
+export const EditButton = ({text, type, id}: ButtonProps) => {
+  const router = useRouter()
+  return (
+    <div className={styles.wrapper}>
+      <button className={styles.buttonEdit} type={type} onClick={() => {router.push('/protected/editblog')}}>
+        {text}
+      </button>
+    </div>
+  );
+}

@@ -42,7 +42,7 @@ const SingleBlog =  async ({params}: {params: { id: string} }) => {
         paragraph={dataBlog.paragraph} 
         isList={false}
         comments={dataBlogComments}
-        tag={dataBlog.Tags}
+        tag={dataBlog.tag.tag}
       />
     </main>
   )

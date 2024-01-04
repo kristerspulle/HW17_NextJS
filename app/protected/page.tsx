@@ -1,7 +1,10 @@
 import { redirect } from 'next/navigation';
 import { authOptions } from '@api/auth/[...nextauth]/route';
 import { getServerSession } from 'next-auth';
-import ServerBlogs from './serverBlogs'
+import { Blog } from '../components/BlogCard/BlogCard';
+import { Button, DeleteBlogButton, EditButton } from '../components/Button/Button';
+import { use } from 'react';
+import styles from './page.module.css'
 
 type Blog = {
   _id: string;
@@ -24,17 +27,35 @@ const getData = async () => {
   }
 };
 
-const ProtectedPage = async () => {
-  const session = await getServerSession(authOptions);
-  const data = await getData();
+const ProtectedPage = () => {
+  const session = use(getServerSession(authOptions));
 
   if (!session) {
     redirect('api/auth/signin?callbackUrl=/protected');
   }
 
+  const data = use(getData());
+
   return (
-    <main>
-      <ServerBlogs blogs={data}/>
+    <main className={styles.main}>
+      {data.map((blog: Blog) => {
+        return (
+          <div key={blog._id} className={styles.wrapper}>
+            <Blog
+              id={blog._id}
+              title={blog.title}
+              image={blog.image}
+              paragraph={blog.paragraph}
+              isList={true}
+              tag={blog.tag.tag}
+            />
+            <div className={styles.buttonWrapper}>
+              <DeleteBlogButton type="button" text="Delete Blog" id={blog._id} />
+              <EditButton type="button" text="Edit Blog" id={blog._id} />
+            </div>
+          </div>
+        );
+      })}
     </main>
   );
 };

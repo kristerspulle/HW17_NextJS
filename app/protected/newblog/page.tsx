@@ -1,11 +1,11 @@
-import BlogForm from '@/app/components/BlogForm/BlogForm'
+import BlogForm from '@/app/components/BlogForm/BlogForm';
+import styles from './page.module.css'
 
 const newBlog = () => {
   return (
-    <>
-    <div>this is where you add a blog</div>
-    <BlogForm/>
-    </>
+    <div className={styles.wrapper}>
+      <BlogForm/>
+    </div>
   )
 }
 

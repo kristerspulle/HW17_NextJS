@@ -1,0 +1,17 @@
+.wrapper{
+  border-radius: 10px;
+}
+
+.editor{
+  background-color: white;
+  height: 350px;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 1140px;
+}
+
+.toolbar{
+  background-color: rgb(0, 0, 117);
+  border-radius: 10px;
+  max-width: 1140px;
+}

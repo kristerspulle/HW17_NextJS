@@ -2,10 +2,11 @@ import { connectToDB } from '@/lib/mongo/connectToDB';
 import Blog from '@/lib/models/blog';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
+export const GET = async (request: NextRequest, { params }: { params: { id: string, tag: {} } }) => {
+  console.log('params',params);
   try {
     await connectToDB();
-    const blog = await Blog.findById(params.id);
+    const blog = await Blog.findById(params.id).populate('tag', 'tag');
     return new NextResponse(JSON.stringify(blog));
   } catch (error) {
     return new NextResponse('Error in fetching MongoDB data: ' + error);
@@ -21,3 +22,13 @@ export const DELETE = async (request: NextRequest, { params }: { params: { id: s
     return new NextResponse('error' + error);
   }
 };
+
+export const PATCH = async (request: NextRequest, { params }: { params: { id: string } }) => {
+  try {
+    await connectToDB();
+    const editBlog = await Blog.findByIdAndUpdate(params.id);
+    return new NextResponse(JSON.stringify(editBlog));
+  } catch (error) {
+    return new NextResponse('error' + error);
+  }
+}

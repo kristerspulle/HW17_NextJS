@@ -1,11 +1,29 @@
+'use client';
 
-import React from 'react';
+import { useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+import { EditorState } from 'draft-js';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import styles from './TextEditor.module.css'
 
-const TextEditor = () => <Editor wrapperClassName="wrapper-class"
-        editorClassName="editor-class"
-        toolbarClassName="toolbar-class"
-  />
+const TextEditor = ({onEditorStateChange}: {onEditorStateChange: (e: EditorState) => void}): JSX.Element => {
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
-export default TextEditor
+  const editorStateChange = (newEditorState: EditorState) => {
+    setEditorState(newEditorState);
+    onEditorStateChange(newEditorState);
+  };
+
+  return (
+    <Editor
+      toolbarOnFocus
+      wrapperClassName={styles.wrapper}
+      editorClassName={styles.editor}
+      toolbarClassName={styles.toolbar}
+      editorState={editorState}
+      onEditorStateChange={editorStateChange}
+    />
+  );
+};
+
+export default TextEditor;

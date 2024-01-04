@@ -1,23 +1,21 @@
-import { connectToDB } from '@/lib/mongo/connectToDB';
-import Blog from '@/lib/models/blog';
-import { NextRequest, NextResponse } from 'next/server';
 import { Tag } from '@/lib/models/tag';
+import { connectToDB } from '@/lib/mongo/connectToDB';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const GET = async () => {
   
   try {
     await connectToDB();
-    // const tag = await Tag.create({tag: 'Medicine'})
-    const blogs = await Blog.find().populate('tag', 'tag')
-    return new NextResponse(JSON.stringify(blogs));
+    const tag = await Tag.find()
+    return new NextResponse(JSON.stringify(tag));
   } catch (error) {
     return new NextResponse('err' + error);
   }
 };
 
 export const POST = async (request: NextRequest) => {
-  const { title, image, paragraph, tag } = await request.json();
+  const { tag } = await request.json();
   await connectToDB();
-  await Blog.create({ title, image, paragraph, tag });
+  await Tag.create({ tag });
   return NextResponse.json({ message: 'Comment added' }, { status: 201 });
 };

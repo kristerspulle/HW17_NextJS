@@ -1,5 +1,6 @@
 import styles from './page.module.css';
 import { Blog } from './components/BlogCard/BlogCard';
+import { getCommentData } from './protected/comments/page';
 
 type Blog = {
   _id: string;
@@ -24,6 +25,7 @@ const getData = async () => {
 
 const Home = async (): Promise<JSX.Element> => {
   const data = await getData();
+  const comments = await getCommentData()
 
   return (
     <main className={styles.main}>
