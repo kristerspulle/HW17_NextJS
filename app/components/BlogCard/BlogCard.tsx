@@ -17,7 +17,10 @@ type BlogProps = {
     comment: string;
     createdAt: Date;
   }[];
-  tag: string;
+  tag: {
+    _id: string,
+    tag: string
+  }
 };
 
 export const Blog = async ({id, title, image, paragraph,  isList = true, comments, tag}: BlogProps) => {
@@ -44,7 +47,7 @@ export const Blog = async ({id, title, image, paragraph,  isList = true, comment
         </div>
         <div className={styles.textWrapper}>
           <div className={styles.paragraph}>{(parse(paragraph.slice(0, 800)))}...</div>
-          <div className={styles.tag}>{tag}</div>
+          <Link href={`/${tag._id}`} className={styles.tag}>{tag.tag}</Link>
         </div>
       </div>
     </div>
@@ -65,7 +68,7 @@ export const Blog = async ({id, title, image, paragraph,  isList = true, comment
         alt={title}
       />
       <div className={styles.paragraph}>{parse(paragraph)}</div>
-      <div className={styles.tag}>{tag}</div>
+      <Link href={`/${tag._id}`} className={styles.tag}>{tag.tag}</Link>
       <div className={styles.seperator}></div>
       <CommentForm />
       <div className={styles.commentWrapper}>

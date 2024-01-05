@@ -1,6 +1,6 @@
 import Comments from '@/lib/models/comments';
 import { connectToDB } from '@/lib/mongo/connectToDB';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export const GET = async () => {
   try {

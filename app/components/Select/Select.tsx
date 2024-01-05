@@ -1,6 +1,10 @@
 import CreatableSelect from 'react-select/creatable';
 import styles from './Select.module.css'
 
+type SelectProps = {
+  onChange: (choice) => void;
+};
+
 type TagOption = { value: string; label: string; _id: string };
 
 type Tag = {
@@ -28,11 +32,9 @@ const createOptions = async () => {
 };
 
 createOptions();
-type props = {
-  onChange: (choice) => void;
 
-};
-export const Select = ({ onChange }: props) => (
+
+export const Select = ({ onChange }: SelectProps) => (
   <CreatableSelect
     className={styles.select}
     placeholder='Select Blog Tag'

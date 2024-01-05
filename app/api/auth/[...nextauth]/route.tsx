@@ -1,7 +1,6 @@
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { NextApiHandler } from 'next';
-import GoogleProvider from 'next-auth/providers/google';
 import { loginUser } from '@/lib/services/auth';
 
 type Credentials = {
@@ -18,9 +17,9 @@ export const authOptions: NextAuthOptions = {
         password: { label: 'Password', type: 'password', placeholder: 'Password' },
       },
       async authorize(credentials) {
-        const {username, password} = credentials as Credentials
+        const { username, password } = credentials as Credentials;
 
-        const user = await loginUser({username, password})
+        const user = await loginUser({ username, password });
 
         if (user) {
           return user;

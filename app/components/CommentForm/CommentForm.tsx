@@ -66,18 +66,3 @@ export const CommentForm = () => {
     </form>
   );
 };
-
-// const postUser = async (user) => {
-//   const comment = await fetch(`http://localhost:3000/api/user`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-type': 'application/json'
-//     },
-//     body: JSON.stringify(user)
-//   })
-//   return comment.json();
-// }
-// postUser({
-//   username: 'Admin',
-//   password: 'password'
-// })

@@ -2,9 +2,9 @@ import { redirect } from 'next/navigation';
 import { authOptions } from '@api/auth/[...nextauth]/route';
 import { getServerSession } from 'next-auth';
 import { Blog } from '../components/BlogCard/BlogCard';
-import { Button, DeleteBlogButton, EditButton } from '../components/Button/Button';
+import { DeleteBlogButton, EditButton } from '../components/Button/Button';
 import { use } from 'react';
-import styles from './page.module.css'
+import styles from './page.module.css';
 
 type Blog = {
   _id: string;
@@ -12,6 +12,7 @@ type Blog = {
   image: string;
   paragraph: string;
   tag: {
+    _id: string;
     tag: string;
   };
 };
@@ -47,10 +48,14 @@ const ProtectedPage = () => {
               image={blog.image}
               paragraph={blog.paragraph}
               isList={true}
-              tag={blog.tag.tag}
+              tag={blog.tag}
             />
             <div className={styles.buttonWrapper}>
-              <DeleteBlogButton type="button" text="Delete Blog" id={blog._id} />
+              <DeleteBlogButton
+                type="button"
+                text="Delete Blog"
+                id={blog._id}
+              />
               <EditButton type="button" text="Edit Blog" id={blog._id} />
             </div>
           </div>

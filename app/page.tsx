@@ -8,6 +8,7 @@ type Blog = {
   image: string;
   paragraph: string;
   tag: {
+    _id: string
     tag: string;
   };
 };
@@ -25,7 +26,6 @@ const getData = async () => {
 
 const Home = async (): Promise<JSX.Element> => {
   const data = await getData();
-  const comments = await getCommentData()
 
   return (
     <main className={styles.main}>
@@ -36,7 +36,7 @@ const Home = async (): Promise<JSX.Element> => {
           title={blog.title}
           image={blog.image}
           paragraph={blog.paragraph}
-          tag={blog.tag.tag}
+          tag={blog.tag}
           isList={true}
         />
       ))}

@@ -1,13 +1,10 @@
 import { connectToDB } from '@/lib/mongo/connectToDB';
 import Blog from '@/lib/models/blog';
 import { NextRequest, NextResponse } from 'next/server';
-import { Tag } from '@/lib/models/tag';
 
 export const GET = async () => {
-  
   try {
     await connectToDB();
-    // const tag = await Tag.create({tag: 'Medicine'})
     const blogs = await Blog.find().populate('tag', 'tag')
     return new NextResponse(JSON.stringify(blogs));
   } catch (error) {

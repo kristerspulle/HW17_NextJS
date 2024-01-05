@@ -9,7 +9,7 @@ type TextAreaProps = {
   label?: string
 }
 
-export const TextArea = ({name, label, required = true, placeholder, value, onChange}: TextAreaProps ) => {
+export const TextArea = ({name, label, placeholder, value, onChange}: TextAreaProps ) => {
   return(
     <div className={styles.wrapper}>
       <label className={styles.label} htmlFor={name}>{label}</label>

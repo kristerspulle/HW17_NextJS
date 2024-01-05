@@ -4,16 +4,12 @@ import { signOut } from 'next-auth/react'
 import styles from './Button.module.css'
 import { useRouter } from 'next/navigation';
 
-
 type ButtonProps = {
   type: HTMLButtonElement['type'],
   text: string,
   onClick?: () => void,
   id: string
 }
-
-
-
 
 export const Button = ({type = 'button', text, onClick}: ButtonProps): JSX.Element => {
   return (
