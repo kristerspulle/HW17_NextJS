@@ -25,7 +25,8 @@ export const DELETE = async (request: NextRequest, { params }: { params: { id: s
 export const PATCH = async (request: NextRequest, { params }: { params: { id: string } }) => {
   try {
     await connectToDB();
-    const editBlog = await Blog.findByIdAndUpdate(params.id);
+    const body = await request.json()
+    const editBlog = await Blog.findByIdAndUpdate(params.id, body);
     return new NextResponse(JSON.stringify(editBlog));
   } catch (error) {
     return new NextResponse('error' + error);

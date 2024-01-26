@@ -18,9 +18,7 @@ type Blog = {
 };
 
 const getData = async () => {
-  const res = await fetch('http://localhost:3000/api/blogs', {
-    cache: 'no-store',
-  });
+  const res = await fetch('http://localhost:3000/api/blogs', { next: { tags: ['blogs'] } });
   if (!res.ok) {
     console.log(res);
   } else {

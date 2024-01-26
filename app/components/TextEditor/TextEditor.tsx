@@ -22,6 +22,7 @@ const TextEditor = ({onEditorStateChange}: {onEditorStateChange: (e: EditorState
       toolbarClassName={styles.toolbar}
       editorState={editorState}
       onEditorStateChange={editorStateChange}
+      toolbar={{options: ['inline', 'list', 'textAlign', 'history']}}
     />
   );
 };

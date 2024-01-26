@@ -29,7 +29,7 @@ export const SignOutButton = ({type}: ButtonProps) => {
   );
 };
 
-export const DeleteCommentButton = ({type, onClick, text, id}: ButtonProps) => {
+export const DeleteCommentButton = ({type, text, id}: ButtonProps) => {
   const router = useRouter();
   const deleteComment = async (id: string) => {
     const res = await fetch(`http://localhost:3000/api/blogs/comments/${id}`, {
@@ -82,9 +82,23 @@ export const EditButton = ({text, type, id}: ButtonProps) => {
   const router = useRouter()
   return (
     <div className={styles.wrapper}>
-      <button className={styles.buttonEdit} type={type} onClick={() => {router.push('/protected/editblog')}}>
+      <button className={styles.buttonEdit} type={type} onClick={() => {router.push(`/protected/editblog/${id}`)}}>
         {text}
       </button>
     </div>
   );
+}
+
+export const EditSaveButton = ({text, type, id}: ButtonProps) => {
+  const router = useRouter()
+  return (
+    <div className={styles.wrapper}>
+      <button className={styles.buttonEdit} type={type} onClick={() => {
+        router.push(`/protected`)
+        router.refresh()
+        }}>
+        {text}
+      </button>
+    </div>
+  )
 }

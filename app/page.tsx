@@ -1,6 +1,5 @@
 import styles from './page.module.css';
 import { Blog } from './components/BlogCard/BlogCard';
-import { getCommentData } from './protected/comments/page';
 
 type Blog = {
   _id: string;
