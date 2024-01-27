@@ -56,6 +56,7 @@ export const DeleteCommentButton = ({type, text, id}: ButtonProps) => {
 };
 
 export const DeleteBlogButton = ({type, text, id}: ButtonProps) => {
+  const router = useRouter();
 
   const deleteBlog = async (id: string) => {
     const res = await fetch(`http://localhost:3000/api/blogs/${id}`, {
@@ -71,7 +72,10 @@ export const DeleteBlogButton = ({type, text, id}: ButtonProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <button className={styles.buttonDelete} type={type} onClick={() => deleteBlog(id)}>
+      <button className={styles.buttonDelete} type={type} onClick={() => {
+        deleteBlog(id)
+        router.refresh()
+        }}>
         {text}
       </button>
     </div>

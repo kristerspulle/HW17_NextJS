@@ -1,6 +1,7 @@
 import { connectToDB } from '@/lib/mongo/connectToDB';
 import Blog from '@/lib/models/blog';
 import { NextRequest, NextResponse } from 'next/server';
+import Comments from '@/lib/models/comments';
 
 export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
   try {
@@ -15,6 +16,7 @@ export const GET = async (request: NextRequest, { params }: { params: { id: stri
 export const DELETE = async (request: NextRequest, { params }: { params: { id: string } }) => {
   try {
     await connectToDB();
+    const deleteComments = await Comments.deleteMany({blog: params.id})
     const deleteBlog = await Blog.findByIdAndDelete(params.id);
     return new NextResponse(JSON.stringify(deleteBlog));
   } catch (error) {

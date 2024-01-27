@@ -18,7 +18,7 @@ type Blog = {
 };
 
 const getData = async () => {
-  const res = await fetch('http://localhost:3000/api/blogs', { next: { tags: ['blogs'] } });
+  const res = await fetch('http://localhost:3000/api/blogs');
   if (!res.ok) {
     console.log(res);
   } else {
@@ -34,7 +34,7 @@ const ProtectedPage = () => {
   }
 
   const data = use(getData());
-
+  
   return (
     <main className={styles.main}>
       {data.map((blog: Blog) => {

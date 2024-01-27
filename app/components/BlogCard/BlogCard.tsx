@@ -23,7 +23,19 @@ type BlogProps = {
   }
 };
 
+const getComments = async () => {
+  const res = await fetch('http://localhost:3000/api/blogs/comments');
+  if (!res.ok) {
+    console.log(res);
+  } else {
+    return res.json();
+  }
+};
+
 export const Blog = async ({id, title, image, paragraph,  isList = true, comments, tag}: BlogProps) => {
+
+  const commentsData = await getComments()
+
   return isList ? (
     <div className={styles.blog}>
       <div>
@@ -31,7 +43,7 @@ export const Blog = async ({id, title, image, paragraph,  isList = true, comment
           href={`/blog/${id}`}
           className={styles.title}
         >
-          {title}
+          {title}({commentsData.filter((comment) => comment.blog._id === id).length})
         </Link>
       </div>
       <div className={styles.wrapper}>

@@ -1,8 +1,9 @@
 import CreatableSelect from 'react-select/creatable';
 import styles from './Select.module.css'
+import { useState } from 'react';
 
 type SelectProps = {
-  onChange: (choice) => void;
+  onChange: (choice: TagOption) => void;
 };
 
 type TagOption = { value: string; label: string; _id: string };
@@ -38,9 +39,8 @@ export const Select = ({ onChange }: SelectProps) => (
   <CreatableSelect
     className={styles.select}
     placeholder='Select Blog Tag'
-    isClearable
     options={tagSelectOptions}
     required
-    onChange={onChange}
+    onChange={(selectedOption) => onChange(selectedOption as TagOption)}
   />
 );
