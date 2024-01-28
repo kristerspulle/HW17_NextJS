@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-// require('dotenv').config();
+require('dotenv').config();
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_CLUSTER}.omb9nhp.mongodb.net/blogs`
 
