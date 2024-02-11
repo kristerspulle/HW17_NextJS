@@ -9,9 +9,9 @@ export const GET = async () => {
   const session = await getServerSession(authOptions);
 
   if (!session) {
-    return NextResponse.json({ message: 'wtf you doing here?' });
+    return NextResponse.json({ message: 'Login to acess this page' });
   }
-  return NextResponse.json({ message: 'hello' });
+  return NextResponse.json({ message: 'Hello' });
 };
 
 // export const POST = async () => {
